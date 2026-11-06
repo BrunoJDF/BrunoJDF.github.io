@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bruno Díaz Floreano — Desarrollador de Software Senior</title>
+  <meta name="description" content="Desarrollador de Software Senior especializado en backend Java, Spring Boot, microservicios y Azure. 7+ años construyendo soluciones escalables.">
+  <meta name="theme-color" content="#1D6B00">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (!t) t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --surface: #F5F7F3;
+      --border: #E1E6DD;
+      --text: #0E1A0A;
+      --muted: #55634D;
+      --primary: #1D6B00;
+      --primary-hover: #104500;
+      --primary-soft: #EAF2E5;
+      --on-primary: #FFFFFF;
+      --tag-bg: #EEF2EB;
+      --tag-text: #317813;
+    }
+    [data-theme="dark"] {
+      --bg: #121611;
+      --surface: #13200F;
+      --border: #183B0B;
+      --text: #E6ECE2;
+      --muted: #9DB28F;
+      --primary: #5F8D45;
+      --primary-hover: #7A9B63;
+      --primary-soft: #172E0E;
+      --on-primary: #FFFFFF;
+      --tag-bg: #172E0E;
+      --tag-text: #9DBB86;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 16px;
+      transition: background-color .25s, color .25s;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: 'Montserrat', 'Inter', sans-serif; line-height: 1.2; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: var(--primary-hover); }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navegación */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--text); font-size: 1.05rem; }
+    .logo span { color: var(--primary); }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: .92rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--primary); }
+    .theme-toggle {
+      background: none; border: 1px solid var(--border); color: var(--text);
+      width: 36px; height: 36px; border-radius: 8px; cursor: pointer;
+      display: grid; place-items: center;
+    }
+    .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    .icon-sun { display: none; }
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+
+    /* Hero */
+    .hero { padding-top: 110px; padding-bottom: 90px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .85rem; font-weight: 500; color: var(--primary);
+      background: var(--primary-soft); padding: 6px 14px; border-radius: 999px; margin-bottom: 24px;
+    }
+    .eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
+    .hero h1 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .hero h2 { font-size: clamp(1.15rem, 2.6vw, 1.5rem); font-weight: 500; color: var(--primary); margin-bottom: 22px; }
+    .hero p { max-width: 620px; color: var(--muted); font-size: 1.08rem; margin-bottom: 36px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: 8px; font-weight: 600; font-size: .95rem;
+      border: 1px solid var(--primary); transition: background-color .2s, color .2s, border-color .2s;
+    }
+    .btn svg { width: 18px; height: 18px; }
+    .btn-primary { background: var(--primary); color: var(--on-primary); }
+    .btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); color: var(--on-primary); }
+    .btn-ghost { color: var(--text); border-color: var(--border); }
+    .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* Secciones */
+    section { padding: 80px 0; border-top: 1px solid var(--border); }
+    .section-title { font-size: 1.7rem; font-weight: 700; margin-bottom: 10px; }
+    .section-sub { color: var(--muted); margin-bottom: 44px; max-width: 600px; }
+
+    /* Sobre mí */
+    .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 16px; }
+    .about-text strong { color: var(--text); font-weight: 600; }
+    .facts { display: grid; gap: 14px; }
+    .fact { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+    .fact-num { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+    .fact-label { color: var(--muted); font-size: .9rem; }
+
+    /* Logros */
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .metric { border: 1px solid var(--border); border-radius: 12px; padding: 24px; background: var(--bg); transition: border-color .2s, transform .2s; }
+    .metric:hover { border-color: var(--primary); transform: translateY(-2px); }
+    .metric-num { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 10px; }
+    .metric p { color: var(--muted); font-size: .92rem; }
+
+    /* Experiencia */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+    .job { position: relative; margin-bottom: 44px; }
+    .job:last-child { margin-bottom: 0; }
+    .job::before {
+      content: ''; position: absolute; left: -28px; top: 7px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--primary);
+    }
+    .job.current::before { background: var(--primary); }
+    .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin-bottom: 4px; }
+    .job h3 { font-size: 1.12rem; font-weight: 600; }
+    .job h3 span { color: var(--primary); }
+    .job-date { color: var(--muted); font-size: .88rem; white-space: nowrap; }
+    .job-client { color: var(--muted); font-size: .9rem; margin-bottom: 12px; }
+    .job ul { list-style: none; display: grid; gap: 8px; }
+    .job li { position: relative; padding-left: 18px; color: var(--muted); font-size: .95rem; }
+    .job li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 2px; background: var(--primary); opacity: .7; }
+    .job li strong { color: var(--text); font-weight: 600; }
+
+    /* Stack */
+    .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .stack-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+    .stack-card h3 { font-size: .95rem; font-weight: 600; margin-bottom: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { background: var(--tag-bg); color: var(--tag-text); font-size: .83rem; font-weight: 500; padding: 5px 11px; border-radius: 6px; border: 1px solid var(--border); }
+
+    /* Formación */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px; }
+    .edu-main { border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+    .edu-main h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .edu-main p { color: var(--muted); font-size: .95rem; }
+    .courses { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+    .courses li { font-size: .9rem; color: var(--muted); border-bottom: 1px dashed var(--border); padding-bottom: 8px; }
+    .courses li span { display: block; font-size: .8rem; opacity: .8; }
+
+    /* Contacto */
+    .contact { text-align: center; }
+    .contact .section-sub { margin-left: auto; margin-right: auto; }
+    .contact .actions { justify-content: center; }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; color: var(--muted); font-size: .85rem; }
+
+    @media (max-width: 760px) {
+      .nav-links li:not(:last-child) { display: none; }
+      .hero { padding-top: 72px; padding-bottom: 64px; }
+      section { padding: 64px 0; }
+      .about-grid, .edu-grid { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: repeat(3, 1fr); }
+      .fact { padding: 14px; }
+      .fact-num { font-size: 1.4rem; }
+      .courses { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="container" aria-label="Principal">
+      <a href="#inicio" class="logo">Bruno<span>.</span>dev</a>
+      <ul class="nav-links">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Cambiar entre modo claro y oscuro">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Inicio -->
+    <div class="hero container" id="inicio">
+      <div class="eyebrow">Lima, Perú</div>
+      <h1>Bruno Díaz Floreano</h1>
+      <h2>Desarrollador de Software Senior · Backend Java</h2>
+      <p>Diseño y construyo soluciones backend escalables y de alto rendimiento con Spring Boot, en la nube (Azure) y on-premise. Especializado en migrar sistemas monolíticos a microservicios.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#contacto">Contáctame</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruno-josue-diaz-floreano/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/BrunoJDF" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .3"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- Sobre mí -->
+    <section id="sobre-mi">
+      <div class="container">
+        <h2 class="section-title">Sobre mí</h2>
+        <p class="section-sub">Backend sólido, código limpio y resultados medibles para el negocio.</p>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>Soy <strong>Desarrollador de Software Senior</strong> con más de 7 años de experiencia construyendo soluciones backend con <strong>Java y Spring Boot</strong> para empresas de banca, telecomunicaciones, logística de valores y retail.</p>
+            <p>Mi especialidad es la <strong>migración de sistemas monolíticos a arquitecturas de microservicios</strong>, con foco en rendimiento, escalabilidad y mantenibilidad. Trabajo en entornos cloud con <strong>Azure</strong> y on-premise, y automatizo despliegues con flujos <strong>CI/CD</strong> usando Jenkins y Docker.</p>
+            <p>También tengo experiencia en el frontend con JavaScript y Vue.js, y he liderado técnicamente módulos completos: desde el refinamiento de requisitos con negocio hasta el diseño de la solución y el desarrollo de sus componentes principales.</p>
+          </div>
+          <div class="facts">
+            <div class="fact"><div class="fact-num">7+</div><div class="fact-label">años de experiencia</div></div>
+            <div class="fact"><div class="fact-num">10+</div><div class="fact-label">clientes y productos</div></div>
+            <div class="fact"><div class="fact-num">Java</div><div class="fact-label">Spring Boot · Webflux</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logros -->
+    <section id="logros">
+      <div class="container">
+        <h2 class="section-title">Impacto en cifras</h2>
+        <p class="section-sub">Algunos resultados de mi trabajo reciente.</p>
+        <div class="metrics">
+          <div class="metric"><div class="metric-num">−90%</div><p>en tiempo de soporte del Módulo de Soluciones, gracias a validaciones de negocio estandarizadas.</p></div>
+          <div class="metric"><div class="metric-num">−70%</div><p>de esfuerzo manual al centralizar la configuración de los pipelines CI/CD.</p></div>
+          <div class="metric"><div class="metric-num">−70%</div><p>de errores transaccionales con un servicio de validación de datos de entrada.</p></div>
+          <div class="metric"><div class="metric-num">−60%</div><p>en tiempo de aprobación de transferencias con datos complementarios por país.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section id="experiencia">
+      <div class="container">
+        <h2 class="section-title">Experiencia</h2>
+        <p class="section-sub">Trayectoria profesional como desarrollador backend.</p>
+        <div class="timeline">
+
+          <article class="job current">
+            <div class="job-head">
+              <h3>Desarrollador Java <span>· Prosegur</span></h3>
+              <div class="job-date">Ago 2022 — Actualidad</div>
+            </div>
+            <div class="job-client">Productos: My Prosegur Cash · Centros Efectivo · Genkin</div>
+            <ul>
+              <li>Implementé un nuevo sistema de reportes que <strong>redujo los tiempos de consulta en un 30%</strong>.</li>
+              <li>Diseñé la <strong>telemetría de las APIs con Azure Application Insights</strong>, dando al equipo de soporte trazabilidad completa de errores.</li>
+              <li>Lideré el Módulo de Transferencias: las transferencias por ubicación <strong>agilizaron los cierres en un 40%</strong> y la automatización del informe de compras y ventas <strong>redujo a la mitad el trabajo manual</strong>.</li>
+              <li>Diseñé un <strong>microservicio de procesamiento de archivos</strong>, desacoplado del núcleo de la aplicación, para mejorar la escalabilidad.</li>
+              <li>Optimicé el login, con <strong>tiempos de carga un 50% menores</strong>.</li>
+              <li>Fui el <strong>responsable técnico del nuevo Módulo de Pedidos</strong>, desde el refinamiento de requisitos hasta el desarrollo de los componentes principales.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Java Developer <span>· Indra</span></h3>
+              <div class="job-date">Feb 2022 — Ago 2022</div>
+            </div>
+            <div class="job-client">Cliente: Telefónica del Perú — Mi Recibo Movistar</div>
+            <ul>
+              <li>Resolví incidencias complejas de soporte N3 en producción para garantizar la estabilidad de la aplicación.</li>
+              <li>Lideré la transferencia de las operaciones de soporte, liberando al equipo de desarrollo.</li>
+              <li>Contribuí al <strong>diseño de la nueva arquitectura de microservicios</strong>, definiendo el diagrama de topología.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Developer Backend Java <span>· NTT Data</span></h3>
+              <div class="job-date">Jun 2021 — Feb 2022</div>
+            </div>
+            <div class="job-client">Cliente: Banco de Crédito del Perú (BCP) — LETW, web de letras y facturas</div>
+            <ul>
+              <li>Implementé el <strong>control de sesión</strong>, que se convirtió en el estándar de seguridad de la aplicación.</li>
+              <li>Desarrollé el <strong>módulo de auditoría</strong> para la trazabilidad de las acciones de los usuarios.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Analista Programador Java <span>· Neora SAC</span></h3>
+              <div class="job-date">Sep 2019 — Jun 2021</div>
+            </div>
+            <div class="job-client">Clientes: Interbank · Grupo Bimbo · PwC</div>
+            <ul>
+              <li>Desarrollé de punta a punta un <strong>proceso batch de sincronización</strong> de datos entre la nube y la base de datos local.</li>
+              <li>Implementé módulos de auditoría y extractores de datos de la nube para emisiones electrónicas.</li>
+              <li>Refactoricé lógica de negocio compleja en paquetes Oracle y en código Java.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Analista Programador <span>· Hera Consulting SAC</span></h3>
+              <div class="job-date">Mar 2019 — Ago 2019</div>
+            </div>
+            <div class="job-client">Cliente: Osinergmin</div>
+            <ul>
+              <li>Desarrollé interfaces de usuario con JavaScript y participé en el prototipado de nuevas funcionalidades.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Desarrollador Java <span>· Independiente</span></h3>
+            </div>
+            <ul>
+              <li><strong>Portal de pagos:</strong> lideré la modernización del diseño del portal de pagos de un cliente del sector retail.</li>
+              <li><strong>Gestor de archivos:</strong> desarrollé un microservicio y un proceso batch que automatizan el envío de documentos a un proveedor externo.</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack -->
+    <section id="stack">
+      <div class="container">
+        <h2 class="section-title">Stack tecnológico</h2>
+        <p class="section-sub">Las herramientas con las que trabajo día a día.</p>
+        <div class="stack-grid">
+          <div class="stack-card">
+            <h3>Lenguajes</h3>
+            <div class="tags"><span class="tag">Java 17 / 11 / 8</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">PL/SQL</span></div>
+          </div>
+          <div class="stack-card">
+            <h3>Backend</h3>
+            <div class="tags"><span class="tag">Spring Boot</span><span class="tag">Spring Webflux</span><span class="tag">JEE</span><span class="tag">Maven</span><span class="tag">NestJS</span><span class="tag">TypeORM</span><span class="tag">.NET Core</span></div>
+          </div>
+          <div class="stack-card">
+            <h3>Bases de datos</h3>
+            <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Oracle</span><span class="tag">SQL Server</span><span class="tag">DB2</span><span class="tag">MongoDB</span></div>
+          </div>
+          <div class="stack-card">
+            <h3>Cloud y DevOps</h3>
+            <div class="tags"><span class="tag">Azure</span><span class="tag">Application Insights</span><span class="tag">Docker</span><span class="tag">Jenkins</span><span class="tag">CI/CD</span></div>
+          </div>
+          <div class="stack-card">
+            <h3>Arquitectura</h3>
+            <div class="tags"><span class="tag">Microservicios</span><span class="tag">APIs REST</span><span class="tag">Programación reactiva</span><span class="tag">Circuit Breaker</span><span class="tag">Patrones de diseño</span></div>
+          </div>
+          <div class="stack-card">
+            <h3>Frontend y herramientas</h3>
+            <div class="tags"><span class="tag">Vue.js</span><span class="tag">HTML/CSS</span><span class="tag">Git</span><span class="tag">JIRA</span><span class="tag">SonarQube</span><span class="tag">Scrum</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formación -->
+    <section id="formacion">
+      <div class="container">
+        <h2 class="section-title">Formación</h2>
+        <p class="section-sub">Base técnica y aprendizaje continuo.</p>
+        <div class="edu-grid">
+          <div class="edu-main">
+            <h3>Computación e Informática</h3>
+            <p>Instituto Superior Tecnológico Cibertec</p>
+            <p>2016 — 2019</p>
+          </div>
+          <ul class="courses">
+            <li>Java Spring<span>Platzi · 2022</span></li>
+            <li>Java Spring Boot Fundamentals<span>Platzi · 2021</span></li>
+            <li>Java SE Functional Programming<span>Platzi · 2021</span></li>
+            <li>Advanced Java 1 y 2<span>LinkedIn Learning · 2021</span></li>
+            <li>Java Robust Code<span>LinkedIn Learning · 2021</span></li>
+            <li>NestJS y TypeORM<span>Platzi · 2021</span></li>
+            <li>Jenkins Basic Course<span>Platzi · 2021</span></li>
+            <li>Java POO<span>LinkedIn Learning · 2021</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contact">
+      <div class="container">
+        <h2 class="section-title">Hablemos</h2>
+        <p class="section-sub">¿Tienes un proyecto o una oportunidad en mente? Escríbeme y te respondo pronto.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:brunjo12@hotmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            brunjo12@hotmail.com
+          </a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruno-josue-diaz-floreano/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-ghost" href="https://github.com/BrunoJDF" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Bruno Díaz Floreano</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('themeToggle').addEventListener('click', function () {
+      var root = document.documentElement;
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
